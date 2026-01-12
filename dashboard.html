@@ -288,7 +288,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding-top: 120px;
+            padding-top: 80px;
             min-height: 100vh;
             position: relative;
             padding-left: 5%;
@@ -746,14 +746,20 @@
             .inbox-tabs { gap: 16px; flex-wrap: wrap; }
             .inbox-tab { padding: 8px 0; font-size: 13px; }
             .inbox-filters { justify-content: center; }
-            .inbox-table { font-size: 12px; overflow-x: auto; white-space: nowrap; }
-            .inbox-table th, .inbox-table td { padding: 8px 6px; min-width: 80px; }
-            .inbox-table th:first-child, .inbox-table td:first-child { min-width: 30px; }
+            .inbox-table { font-size: 12px; }
+            .inbox-table thead { display: none; }
+            .inbox-table tbody tr { display: block; border: 1px solid #e0e0e0; border-radius: 8px; margin-bottom: 12px; padding: 12px; background: #fff; }
+            .inbox-table tbody td { display: block; border: none; padding: 4px 0; text-align: left; }
+            .inbox-table tbody td:before { content: attr(data-label) ": "; font-weight: 600; color: #128C88; display: inline-block; min-width: 120px; }
+            .inbox-table tbody td[data-label=""]:before { content: ""; }
             .pagination { flex-wrap: wrap; gap: 8px; justify-content: center; font-size: 12px; }
             .page-btn { width: 28px; height: 28px; }
             .goto-input { width: 36px; height: 20px; }
-            .activities-table { font-size: 12px; overflow-x: auto; white-space: nowrap; }
-            .activities-table th, .activities-table td { padding: 6px; min-width: 60px; }
+            .activities-table { font-size: 12px; }
+            .activities-table thead { display: none; }
+            .activities-table tbody tr { display: block; border: 1px solid #e0e0e0; border-radius: 8px; margin-bottom: 12px; padding: 12px; background: #fff; }
+            .activities-table tbody td { display: block; border: none; padding: 4px 0; text-align: left; }
+            .activities-table tbody td:before { content: attr(data-label) ": "; font-weight: 600; color: #128C88; display: inline-block; min-width: 80px; }
             .chart-container { flex-direction: column; align-items: center; }
             .chart-img { width: 150px; height: 150px; }
             .chart-legend { grid-template-columns: 1fr; gap: 6px; }
@@ -780,15 +786,21 @@
             .pending-banner { padding: 6px 12px; font-size: 13px; }
             .data-viz-title { font-size: 16px; }
             .view-type-selector { font-size: 12px; padding: 4px 24px 4px 12px; }
-            .workflow-inbox { padding: 8px; }
+            .workflow-inbox { padding: 12px 8px; }
             .section-title { font-size: 14px; margin-bottom: 8px; }
-            .inbox-tabs { gap: 12px; }
-            .inbox-tab { padding: 6px 0; font-size: 12px; }
-            .inbox-filters { gap: 6px; }
-            .inbox-filter-btn { padding: 4px 8px; font-size: 12px; }
+            .inbox-tabs { gap: 12px; border-bottom: 1px solid #eee; }
+            .inbox-tab { padding: 8px 0; font-size: 12px; }
+            .inbox-filters { gap: 6px; margin-bottom: 12px; }
+            .inbox-filter-btn { padding: 4px 8px; font-size: 11px; border-radius: 6px; }
             .inbox-table { font-size: 11px; }
-            .inbox-table th, .inbox-table td { padding: 6px 4px; min-width: 70px; }
-            .pagination { font-size: 11px; }
+            .inbox-table thead { display: none; }
+            .inbox-table tbody tr { display: block; border: 1px solid #eee; border-radius: 8px; margin-bottom: 12px; padding: 10px; background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+            .inbox-table tbody td { display: flex; justify-content: space-between; border: none; padding: 6px 0; text-align: right; border-bottom: 1px solid #f9f9f9; }
+            .inbox-table tbody td:last-child { border-bottom: none; }
+            .inbox-table tbody td:before { content: attr(data-label); font-weight: 600; color: #128C88; text-align: left; min-width: 100px; }
+            .inbox-table tbody td[data-label=""]:before { display: none; }
+            .inbox-table tbody td[data-label=""] { justify-content: center; padding: 0; }
+            .pagination { font-size: 11px; justify-content: center; gap: 6px; }
             .page-btn { width: 24px; height: 24px; }
             .goto-input { width: 32px; height: 18px; }
             .viz-card { padding: 8px 12px; }
@@ -797,7 +809,11 @@
             .viz-card-number { font-size: 16px; }
             .viz-card-sub { font-size: 11px; }
             .activities-table { font-size: 11px; }
-            .activities-table th, .activities-table td { padding: 4px; min-width: 50px; }
+            .activities-table thead { display: none; }
+            .activities-table tbody tr { display: block; border: 1px solid #eee; border-radius: 8px; margin-bottom: 12px; padding: 10px; background: #fff; }
+            .activities-table tbody td { display: flex; justify-content: space-between; border: none; padding: 6px 0; text-align: right; border-bottom: 1px solid #f9f9f9; }
+            .activities-table tbody td:last-child { border-bottom: none; }
+            .activities-table tbody td:before { content: attr(data-label); font-weight: 600; color: #128C88; text-align: left; min-width: 80px; }
             .section-header { margin-bottom: 8px; }
             .chart-img { width: 120px; height: 120px; margin: 16px 0; }
             .chart-legend { padding: 12px; }
@@ -1003,7 +1019,7 @@
                 <div class="inbox-filters"><div class="inbox-filter-btn active">Less than 1 Week</div><div class="inbox-filter-btn">1 Week - 1 Month</div><div class="inbox-filter-btn">1 Month - 12 Month</div><div class="inbox-filter-btn">More than 36 Month</div></div>
                 <table class="inbox-table">
                     <thead><tr><th style="width: 30px;"></th><th>Name (En)</th><th>Name (CN)</th><th>CE Ref. No.</th><th>Email</th><th>Inc</th><th>Entitle Type</th><th>Description</th><th>Status</th></tr></thead>
-                    <tbody><tr><td data-label=""></td><td data-label="Name (En)">Chan Dai Man</td><td data-label="Name (CN)">陳大文</td><td data-label="CE Ref. No.">AAA111</td><td data-label="Email">chanTaiMan@hsbc.hk</td><td data-label="Inc">2019/3/20</td><td data-label="Entitle Type">Individual</td><td data-label="Description">New change request</td><td data-label="Status"><span class="status-badge">Pending</span></td></tr></tbody>
+                    <tbody><tr><td data-label=""></td><td data-label="Name (En)">Chan Dai Man</td><td data-label="Name (CN)">陳小文</td><td data-label="CE Ref. No.">AAA111</td><td data-label="Email">chanTaiMan@hsbc.hk</td><td data-label="Inc">2019/3/20</td><td data-label="Entitle Type">Individual</td><td data-label="Description">New change request</td><td data-label="Status"><span class="status-badge">Pending</span></td></tr></tbody>
                 </table>
                 <div class="pagination">
                     <span>Total 1 items</span><div class="page-btn"><</div><div class="page-btn active">1</div><div class="page-btn">></div>

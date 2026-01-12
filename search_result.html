@@ -81,6 +81,12 @@
             align-items: center;
         }
 
+        @media (max-width: 765px) {
+            .nav-links { display: none; }
+        }
+
+
+
         .header-center {
             flex: 1;
             display: flex;
@@ -509,6 +515,24 @@
         @media (max-width: 768px) { .mobile-mega-menu { top: 70px; } }
         @media (max-width: 480px) { .mobile-mega-menu { top: 60px; } }
 
+         .breadcrumb-container img {
+            height: 40px;
+        }
+
+        .header-center {
+            padding: 0 0px;
+        }
+
+        .header-left {
+    gap: 5px; }
+
+
+        .header-right {
+            display:none;
+        }
+
+
+
         .mobile-mega-menu.visible { display: block; }
 
         .mobile-mega-menu-item {
@@ -621,6 +645,26 @@
             }
             .summary-title {
                 font-size: 20px;
+            }
+            .results-table {
+                overflow-x: auto;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .results-table td {
+                border-bottom: 1px solid #ddd;
+                display: block;
+                font-size: 13px;
+                text-align: right;
+            }
+            .results-table td:before {
+                content: attr(data-label) ": ";
+                float: left;
+                font-weight: bold;
+            }
+            .results-table th {
+                display: none;
             }
         }
     </style>
@@ -985,10 +1029,10 @@
             const filteredResults = allResults.filter(result => selectedTags.includes(result.type) || selectedTags.includes('All'));
             resultsBody.innerHTML = filteredResults.map(result => `
                 <tr>
-                    <td onclick="window.location.href='profile.html'" style="cursor: pointer; text-decoration: underline; color: #128C88;">${result.name}</td>
-                    <td>${result.type}</td>
-                    <td>${result.ref}</td>
-                    <td>${result.desc}</td>
+                    <td data-label="Name" onclick="window.location.href='profile.html'" style="cursor: pointer; text-decoration: underline; color: #128C88;">${result.name}</td>
+                    <td data-label="Type">${result.type}</td>
+                    <td data-label="Reference">${result.ref}</td>
+                    <td data-label="Description">${result.desc}</td>
                 </tr>
             `).join('');
 

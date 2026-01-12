@@ -622,6 +622,23 @@
             }
         }
 
+        @media screen and (max-width: 600px) {
+            table tbody td {
+                border-bottom: 1px solid #ddd;
+                display: block;
+                font-size: 13px;
+                text-align: right;
+            }
+            table thead th {
+                display: none;
+            }
+            table tbody td:before {
+                content: attr(data-label) ": ";
+                float: left;
+                font-weight: bold;
+            }
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
