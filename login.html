@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SFC Entity Management System - Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600&family=Arial:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --primary-color: #128C88;
+            --primary-inverse: #FFFFFF;
+            --bg-color: #FFFFFF;
+            --text-main: #000000;
+            --text-secondary: #676767;
+            --input-bg: #FAFAFA;
+            --input-border-gradient: linear-gradient(132deg, #04ECD3 1%, rgba(181, 51, 197, 0.69) 100%);
+            --input-shadow: 0px 0px 5.4px 0px #17D9D1;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            background: rgba(18, 140, 136, 0.1);
+            border-radius: 50%;
+            filter: blur(50px);
+        }
+
+        .shape1 { width: 400px; height: 400px; top: 5%; left: 5%; animation: moveHorizontal 40s ease infinite; }
+        .shape2 { width: 300px; height: 300px; top: 40%; right: 10%; animation: moveInCircle 20s reverse infinite; }
+        .shape3 { width: 250px; height: 250px; bottom: 15%; left: 40%; animation: moveVertical 30s ease infinite; }
+        .shape4 { width: 350px; height: 350px; top: 20%; right: 5%; animation: moveInCircle 40s linear infinite; }
+        .shape5 { width: 280px; height: 280px; bottom: 5%; right: 30%; animation: moveHorizontal 50s ease infinite; }
+
+        .login-container {
+            background: white;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0px 12px 23.5px 0px rgba(0, 0, 0, 0.08);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .login-title {
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .input-group {
+            text-align: left;
+        }
+
+        .input-label {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            background: var(--input-bg);
+            border-radius: 12px;
+            font-size: 16px;
+            outline: none;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .login-button {
+            background-color: var(--primary-color);
+            color: var(--primary-inverse);
+            border: none;
+            border-radius: 12px;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-button:hover {
+            background-color: #0e6e6b;
+        }
+
+        .error-message {
+            color: #FF0000;
+            font-size: 14px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        @keyframes moveHorizontal { 0% { transform: translateX(-50%) translateY(-10%); } 50% { transform: translateX(50%) translateY(10%); } 100% { transform: translateX(-50%) translateY(-10%); } }
+        @keyframes moveInCircle { 0% { transform: rotate(0deg); } 50% { transform: rotate(180deg); } 100% { transform: rotate(360deg); } }
+        @keyframes moveVertical { 0% { transform: translateY(-50%); } 50% { transform: translateY(50%); } 100% { transform: translateY(-50%); } }
+    </style>
+</head>
+<body>
+    <div class="background-animation">
+        <div class="shape shape1"></div>
+        <div class="shape shape2"></div>
+        <div class="shape shape3"></div>
+        <div class="shape shape4"></div>
+        <div class="shape shape5"></div>
+    </div>
+    <div class="login-container">
+        <h1 class="login-title">SFC Entity Management System</h1>
+        <form class="login-form" id="loginForm">
+            <div class="input-group">
+                <label for="password" class="input-label">Enter Password</label>
+                <input type="password" id="password" class="password-input" placeholder="Password" required>
+            </div>
+            <button type="submit" class="login-button">Login</button>
+        </form>
+        <div id="errorMessage" class="error-message">Incorrect password. Please try again.</div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const password = document.getElementById('password').value;
+            if (password === 'Kinetix') {
+                sessionStorage.setItem('authenticated', 'true');
+                window.location.href = 'index.html';
+            } else {
+                document.getElementById('errorMessage').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>

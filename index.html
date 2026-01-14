@@ -941,6 +941,11 @@
     </style>
 </head>
 <body>
+    <script>
+        if (sessionStorage.getItem('authenticated') !== 'true') {
+            window.location.href = 'login.html';
+        }
+    </script>
     <div class="background-animation">
         <div class="shape shape1"></div>
         <div class="shape shape2"></div>
