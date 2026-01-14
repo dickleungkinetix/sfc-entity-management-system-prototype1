@@ -11,6 +11,35 @@ function performSearch() {
     }
 }
 
+// Password protection
+document.addEventListener('DOMContentLoaded', function() {
+    const loginDiv = document.getElementById('login');
+    const mainContent = document.getElementById('main-content');
+    const passwordInput = document.getElementById('passwordInput');
+    const loginButton = document.getElementById('loginButton');
+
+    if (loginButton) {
+        loginButton.addEventListener('click', function() {
+            if (passwordInput.value === 'Kinetix') {
+                loginDiv.style.display = 'none';
+                mainContent.style.display = 'block';
+            } else {
+                alert('Incorrect password!');
+                passwordInput.value = '';
+            }
+        });
+    }
+
+    // Allow Enter key to submit password
+    if (passwordInput) {
+        passwordInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                loginButton.click();
+            }
+        });
+    }
+});
+
 // Initialize search elements
 document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.getElementById('searchInput');
